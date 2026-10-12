@@ -236,7 +236,7 @@ Prompt 组装现对问题中用“和/及/与”并列的方面分别保留最�
 - base-url: `https://ahg.codes`
 - model: `gpt-5.6-sol`
 
-当前本机环境里遗留了 `AGICORE_RAG_GENERATION_API_KEY=ark-...`，会覆盖配置并导致旧的豆包/Ark key 被误用于 RAG generation。服务已用显式对话模型环境重启，并清空该 Ark key。离线干扰脚本 `scripts/run_rag_distractor_eval.py` 也已去除硬编码 `doubao-seed-2-1-pro-260915` 和 Ark Responses 地址，改为从 `AGICORE_RAG_CHAT_API_KEY`、`AGICORE_LLM_API_KEY`、`AGICORE_RAG_GENERATION_BASE_URL`、`AGICORE_RAG_GENERATION_MODEL` 读取对话模型配置，默认模型为 `gpt-5.6-sol`。
+当前本机环境里遗留了 `WORKPRO_RAG_GENERATION_API_KEY=ark-...`，会覆盖配置并导致旧的豆包/Ark key 被误用于 RAG generation。服务已用显式对话模型环境重启，并清空该 Ark key。离线干扰脚本 `scripts/run_rag_distractor_eval.py` 也已去除硬编码 `doubao-seed-2-1-pro-260915` 和 Ark Responses 地址，改为从 `WORKPRO_RAG_CHAT_API_KEY`、`WORKPRO_LLM_API_KEY`、`WORKPRO_RAG_GENERATION_BASE_URL`、`WORKPRO_RAG_GENERATION_MODEL` 读取对话模型配置，默认模型为 `gpt-5.6-sol`。
 
 验证：
 
@@ -244,7 +244,7 @@ Prompt 组装现对问题中用“和/及/与”并列的方面分别保留最�
 - 当前服务健康检查通过，8080 可用。
 - 定向调用 `basic-009` 仍返回 `ANSWER_GENERATION_FAILED`，后端日志为对话模型调用 `Unauthorized`。这表示当前机器缺少可用的对话模型 API key，不能继续做真实模型语义验收；它不是检索或 prompt 证据覆盖失败。
 
-要继续 100 条真实模型复测，需要注入可用的对话模型 key，例如 `AGICORE_RAG_CHAT_API_KEY` 或 `AGICORE_LLM_API_KEY`，并保持 `AGICORE_RAG_GENERATION_API_KEY` 不再指向 Ark key。
+要继续 100 条真实模型复测，需要注入可用的对话模型 key，例如 `WORKPRO_RAG_CHAT_API_KEY` 或 `WORKPRO_LLM_API_KEY`，并保持 `WORKPRO_RAG_GENERATION_API_KEY` 不再指向 Ark key。
 
 ## 2026-09-18 DeepSeek 对话模型真实复测
 
@@ -366,7 +366,7 @@ full-corpus 中另外三项自动失败经人工复核不作为生成错误：
 - Java：`mvn -q "-Dnet.bytebuddy.experimental=true" "-Dtest=RagPromptBuilderTest,AnswerServiceTest,RetrievalQueryProfileTest" test`
 - Python：`python -m pytest scripts\tests\test_run_rag_eval.py scripts\tests\test_audit_rag_acceptance.py scripts\tests\test_rag_eval_scopes.py scripts\tests\test_validate_rag_eval.py`，`17/17` 通过。
 
-真实 DeepSeek 复测尚未执行：当前 shell 没有持久化 `AGICORE_RAG_CHAT_API_KEY` / `AGICORE_LLM_API_KEY`，且执行层会拦截把完整 key 或 key 片段放进命令的启动方式。需要在本机终端预先设置环境变量后再重启 8080 并跑 focused 复测。
+真实 DeepSeek 复测尚未执行：当前 shell 没有持久化 `WORKPRO_RAG_CHAT_API_KEY` / `WORKPRO_LLM_API_KEY`，且执行层会拦截把完整 key 或 key 片段放进命令的启动方式。需要在本机终端预先设置环境变量后再重启 8080 并跑 focused 复测。
 
 ## 2026-09-18 multi_hop-003 与 basic-004 最终复测
 
@@ -431,7 +431,7 @@ full-corpus 中另外三项自动失败经人工复核不作为生成错误：
 
 ### 接口
 
-实现位置：`backend/src/main/java/com/agicore/api/RagAnswerController.java` 与 `backend/src/main/java/com/agicore/dialogue/RagQualityService.java`
+实现位置：`backend/src/main/java/com/workpro/api/RagAnswerController.java` 与 `backend/src/main/java/com/workpro/dialogue/RagQualityService.java`
 
 - `POST /api/rag/answer`
   - 正常回答接口。
@@ -459,7 +459,7 @@ full-corpus 中另外三项自动失败经人工复核不作为生成错误：
 
 ### 测试
 
-新增控制器测试：`backend/src/test/java/com/agicore/api/RagAnswerControllerTest.java`
+新增控制器测试：`backend/src/test/java/com/workpro/api/RagAnswerControllerTest.java`
 
 已通过：
 

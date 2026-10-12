@@ -26,23 +26,23 @@
 **Files:**
 - Modify: `backend/pom.xml`
 - Modify: `backend/src/main/resources/application.yml` (or the active application configuration file)
-- Create: `backend/src/main/java/com/agicore/config/ElasticsearchProperties.java`
-- Create: `backend/src/main/java/com/agicore/rag/ElasticsearchClientConfig.java`
-- Test: `backend/src/test/java/com/agicore/rag/ElasticsearchClientConfigTest.java`
+- Create: `backend/src/main/java/com/workpro/config/ElasticsearchProperties.java`
+- Create: `backend/src/main/java/com/workpro/rag/ElasticsearchClientConfig.java`
+- Test: `backend/src/test/java/com/workpro/rag/ElasticsearchClientConfigTest.java`
 
 - [ ] Write a failing test asserting the client resolves `http://localhost:9200` and the index name `rag_chunks` from defaults.
 - [ ] Run `mvn -q -Dtest=ElasticsearchClientConfigTest test`; expect failure because the properties and client bean do not exist.
 - [x] Use the JDK HTTP client plus Jackson instead of adding a heavyweight ES client dependency.
-- [x] Add properties `agicore.elasticsearch.url`, `agicore.elasticsearch.username`, `agicore.elasticsearch.password`, `agicore.elasticsearch.index`, defaulting to `http://localhost:9200`, blank credentials, and `rag_chunks`.
+- [x] Add properties `workpro.elasticsearch.url`, `workpro.elasticsearch.username`, `workpro.elasticsearch.password`, `workpro.elasticsearch.index`, defaulting to `http://localhost:9200`, blank credentials, and `rag_chunks`.
 - [x] Create an injectable REST wrapper using the existing Jackson mapper.
 - [x] Run the complete Maven test suite; existing tests pass.
 
 ### Task 2: Index mapping and bulk synchronization
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/ElasticsearchIndexService.java`
-- Create: `backend/src/main/java/com/agicore/api/ElasticsearchAdminController.java`
-- Create: `backend/src/test/java/com/agicore/rag/ElasticsearchIndexServiceTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/ElasticsearchIndexService.java`
+- Create: `backend/src/main/java/com/workpro/api/ElasticsearchAdminController.java`
+- Create: `backend/src/test/java/com/workpro/rag/ElasticsearchIndexServiceTest.java`
 - Create: `scripts/sync_rag_chunks_to_elasticsearch.py` only if Java bulk sync cannot reuse existing persistence safely
 
 - [ ] Write a failing test asserting the index mapping contains `chunk_id`, `document_id`, `source_file`, `location`, `content`, and `normalized_content`, with BM25 text fields.
@@ -56,10 +56,10 @@
 ### Task 3: Elasticsearch BM25 retrieval provider
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/ElasticsearchBm25RetrievalProvider.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Remove or retire: `backend/src/main/java/com/agicore/rag/KeywordRetrievalProvider.java`
-- Create: `backend/src/test/java/com/agicore/rag/ElasticsearchBm25RetrievalProviderTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/ElasticsearchBm25RetrievalProvider.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Remove or retire: `backend/src/main/java/com/workpro/rag/KeywordRetrievalProvider.java`
+- Create: `backend/src/test/java/com/workpro/rag/ElasticsearchBm25RetrievalProviderTest.java`
 
 - [ ] Write a failing test asserting a Chinese query produces an Elasticsearch `multi_match` request and that `documentId` becomes a filter clause.
 - [ ] Run the focused test and verify it fails because the provider does not exist.
@@ -73,10 +73,10 @@
 ### Task 4: RRF metadata, failure handling, and API compatibility
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Modify: `backend/src/main/java/com/agicore/api/RagController.java` only if a reindex endpoint is needed
-- Modify: `backend/src/test/java/com/agicore/rag/RagSearchDelegationTest.java`
-- Modify: `backend/src/test/java/com/agicore/rag/RetrievalFusionServiceTest.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Modify: `backend/src/main/java/com/workpro/api/RagController.java` only if a reindex endpoint is needed
+- Modify: `backend/src/test/java/com/workpro/rag/RagSearchDelegationTest.java`
+- Modify: `backend/src/test/java/com/workpro/rag/RetrievalFusionServiceTest.java`
 
 - [ ] Write a failing test asserting Auto enables `VECTOR`, `ELASTICSEARCH_BM25`, and `STRUCTURED`, and records an Elasticsearch failure without returning fake hits.
 - [ ] Run the test and verify the old provider names/behavior fail the assertion.

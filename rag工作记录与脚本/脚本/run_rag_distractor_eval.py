@@ -92,8 +92,8 @@ def normalize_bare_citations(answer, evidence):
 
 
 def call_model(prompt, key, api_url=None, model=None):
-    api_url = api_url or os.getenv("AGICORE_RAG_GENERATION_BASE_URL", "https://ahg.codes")
-    model = model or os.getenv("AGICORE_RAG_GENERATION_MODEL", "gpt-5.6-sol")
+    api_url = api_url or os.getenv("WORKPRO_RAG_GENERATION_BASE_URL", "https://ahg.codes")
+    model = model or os.getenv("WORKPRO_RAG_GENERATION_MODEL", "gpt-5.6-sol")
     answer_tool = {"type": "function", "name": "submit_answer",
         "description": "提交基于给定证据的最终回答与可答性判断",
         "parameters": {"type": "object", "properties": {
@@ -142,15 +142,15 @@ def main():
     parser.add_argument("--baseline", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--case-id", help="仅复测指定样本；使用不同输出文件保留原始失败")
-    parser.add_argument("--api-url", default=os.getenv("AGICORE_RAG_GENERATION_BASE_URL", "https://ahg.codes"))
-    parser.add_argument("--model", default=os.getenv("AGICORE_RAG_GENERATION_MODEL", "gpt-5.6-sol"))
+    parser.add_argument("--api-url", default=os.getenv("WORKPRO_RAG_GENERATION_BASE_URL", "https://ahg.codes"))
+    parser.add_argument("--model", default=os.getenv("WORKPRO_RAG_GENERATION_MODEL", "gpt-5.6-sol"))
     parser.add_argument("--variants", nargs="+", choices=("control", "prepend", "append"),
                         default=["control", "prepend", "append"])
     args = parser.parse_args()
-    key = (os.getenv("AGICORE_RAG_CHAT_API_KEY") or os.getenv("AGICORE_LLM_API_KEY")
-           or os.getenv("AGICORE_RAG_GENERATION_API_KEY"))
+    key = (os.getenv("WORKPRO_RAG_CHAT_API_KEY") or os.getenv("WORKPRO_LLM_API_KEY")
+           or os.getenv("WORKPRO_RAG_GENERATION_API_KEY"))
     if not key:
-        parser.error("Set AGICORE_RAG_CHAT_API_KEY or AGICORE_LLM_API_KEY for dialogue model generation")
+        parser.error("Set WORKPRO_RAG_CHAT_API_KEY or WORKPRO_LLM_API_KEY for dialogue model generation")
     rows = [r for r in read_jsonl(args.dataset) if r["type"] == "context_confusion"]
     if args.case_id:
         rows = [r for r in rows if r["id"] == args.case_id]

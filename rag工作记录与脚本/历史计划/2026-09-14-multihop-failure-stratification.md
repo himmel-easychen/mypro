@@ -20,9 +20,9 @@
 ### Task 1: Backend staged retrieval trace
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Modify: `backend/src/main/java/com/agicore/api/RagController.java`
-- Test: `backend/src/test/java/com/agicore/rag/RetrievalServiceAdapterDiagnosticsTest.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Modify: `backend/src/main/java/com/workpro/api/RagController.java`
+- Test: `backend/src/test/java/com/workpro/rag/RetrievalServiceAdapterDiagnosticsTest.java`
 
 **Interfaces:**
 - Produces: `metadata.stage_candidates`, mapping `vector`, `bm25`, `structured`, `fused`, `reranked`, and `final_context` to ordered candidate snapshots.

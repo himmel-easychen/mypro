@@ -38,9 +38,9 @@
 ### Task 2: 建立统一 RetrievalCandidate 契约
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalContracts.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Test: `backend/src/test/java/com/agicore/rag/RetrievalCandidateTest.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalContracts.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Test: `backend/src/test/java/com/workpro/rag/RetrievalCandidateTest.java`
 
 **Interfaces:**
 - `RetrievalCandidate(String chunkId, String parentChunkId, String documentId, String sourceFile, String content, String location, Map<String,Double> providerScores, double finalScore, CandidateStatus status)`。
@@ -54,11 +54,11 @@
 ### Task 3: 实现关键词和结构化精确召回
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/persistence/RagPersistence.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RagServices.java`
-- Create: `backend/src/main/java/com/agicore/rag/ExactRetrievalProvider.java`
-- Create: `backend/src/main/java/com/agicore/rag/KeywordRetrievalProvider.java`
-- Test: `backend/src/test/java/com/agicore/rag/ExactRetrievalProviderTest.java`
+- Modify: `backend/src/main/java/com/workpro/persistence/RagPersistence.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RagServices.java`
+- Create: `backend/src/main/java/com/workpro/rag/ExactRetrievalProvider.java`
+- Create: `backend/src/main/java/com/workpro/rag/KeywordRetrievalProvider.java`
+- Test: `backend/src/test/java/com/workpro/rag/ExactRetrievalProviderTest.java`
 
 **Interfaces:**
 - `List<RetrievalCandidate> searchExact(String query, RetrievalFilter filter, int limit)`。
@@ -74,10 +74,10 @@
 ### Task 4: 三路融合、去重和 parent 扩展
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/RetrievalFusionService.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RagServices.java`
-- Modify: `backend/src/main/java/com/agicore/api/RagController.java`
-- Test: `backend/src/test/java/com/agicore/rag/RetrievalFusionServiceTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/RetrievalFusionService.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RagServices.java`
+- Modify: `backend/src/main/java/com/workpro/api/RagController.java`
+- Test: `backend/src/test/java/com/workpro/rag/RetrievalFusionServiceTest.java`
 
 **Interfaces:**
 - `RetrievalResponse search(RetrievalRequest request)`。
@@ -92,10 +92,10 @@
 ### Task 5: 接入统一检索 API 和可观测日志
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/api/RagController.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RagServices.java`
-- Create: `backend/src/main/java/com/agicore/rag/RetrievalTrace.java`
-- Test: `backend/src/test/java/com/agicore/rag/RagSearchDelegationTest.java`
+- Modify: `backend/src/main/java/com/workpro/api/RagController.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RagServices.java`
+- Create: `backend/src/main/java/com/workpro/rag/RetrievalTrace.java`
+- Test: `backend/src/test/java/com/workpro/rag/RagSearchDelegationTest.java`
 
 **Interfaces:**
 - `GET /api/rag/search?query=...&topK=8&documentId=...&mode=auto|vector|keyword|exact`。

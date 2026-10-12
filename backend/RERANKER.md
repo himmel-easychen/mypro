@@ -13,9 +13,9 @@ docker compose -f reranker.compose.yml up -d
 Enable it for the backend process with:
 
 ```powershell
-$env:AGICORE_RERANK_ENABLED = 'true'
-$env:AGICORE_RERANK_BASE_URL = 'http://localhost:8000'
-$env:AGICORE_RERANK_PATH = '/rerank'
+$env:WORKPRO_RERANK_ENABLED = 'true'
+$env:WORKPRO_RERANK_BASE_URL = 'http://localhost:8000'
+$env:WORKPRO_RERANK_PATH = '/rerank'
 ```
 
 The reranker is disabled by default so an unconfigured environment does not

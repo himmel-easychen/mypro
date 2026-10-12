@@ -5,8 +5,8 @@ spring:
       port: ${REDIS_PORT:6380}
   servlet:
     multipart:
-      max-file-size: ${AGICORE_UPLOAD_MAX_FILE_SIZE:100MB}
-      max-request-size: ${AGICORE_UPLOAD_MAX_REQUEST_SIZE:110MB}
+      max-file-size: ${WORKPRO_UPLOAD_MAX_FILE_SIZE:100MB}
+      max-request-size: ${WORKPRO_UPLOAD_MAX_REQUEST_SIZE:110MB}
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/aiagent}
     username: ${DB_USERNAME:aiagent}
@@ -15,40 +15,40 @@ spring:
     enabled: true
     baseline-on-migrate: true
     baseline-version: 0
-agicore:
+workpro:
   retrieval:
     rerank:
-      enabled: ${AGICORE_RERANK_ENABLED:false}
-      base-url: ${AGICORE_RERANK_BASE_URL:http://127.0.0.1:8000}
-      path: ${AGICORE_RERANK_PATH:/rerank}
-      api-key: ${AGICORE_RERANK_API_KEY:}
-      model: ${AGICORE_RERANK_MODEL:BAAI/bge-reranker-base}
+      enabled: ${WORKPRO_RERANK_ENABLED:false}
+      base-url: ${WORKPRO_RERANK_BASE_URL:http://127.0.0.1:8000}
+      path: ${WORKPRO_RERANK_PATH:/rerank}
+      api-key: ${WORKPRO_RERANK_API_KEY:}
+      model: ${WORKPRO_RERANK_MODEL:BAAI/bge-reranker-base}
   elasticsearch:
-    url: ${AGICORE_ELASTICSEARCH_URL:http://localhost:9200}
-    index: ${AGICORE_ELASTICSEARCH_INDEX:rag_chunks}
-    username: ${AGICORE_ELASTICSEARCH_USERNAME:}
-    password: ${AGICORE_ELASTICSEARCH_PASSWORD:}
-    connect-timeout-ms: ${AGICORE_ELASTICSEARCH_CONNECT_TIMEOUT_MS:3000}
-    request-timeout-ms: ${AGICORE_ELASTICSEARCH_REQUEST_TIMEOUT_MS:15000}
+    url: ${WORKPRO_ELASTICSEARCH_URL:http://localhost:9200}
+    index: ${WORKPRO_ELASTICSEARCH_INDEX:rag_chunks}
+    username: ${WORKPRO_ELASTICSEARCH_USERNAME:}
+    password: ${WORKPRO_ELASTICSEARCH_PASSWORD:}
+    connect-timeout-ms: ${WORKPRO_ELASTICSEARCH_CONNECT_TIMEOUT_MS:3000}
+    request-timeout-ms: ${WORKPRO_ELASTICSEARCH_REQUEST_TIMEOUT_MS:15000}
   ocr:
-    enabled: ${AGICORE_OCR_ENABLED:true}
-    base-url: ${AGICORE_OCR_BASE_URL:http://127.0.0.1:8090}
-    connect-timeout-ms: ${AGICORE_OCR_CONNECT_TIMEOUT_MS:3000}
-    read-timeout-ms: ${AGICORE_OCR_READ_TIMEOUT_MS:120000}
-    max-file-bytes: ${AGICORE_OCR_MAX_FILE_BYTES:104857600}
-    minimum-page-pass-rate: ${AGICORE_OCR_MINIMUM_PAGE_PASS_RATE:0.95}
-    task-storage-dir: ${AGICORE_OCR_TASK_STORAGE_DIR:${java.io.tmpdir}/agicore-ocr-tasks}
+    enabled: ${WORKPRO_OCR_ENABLED:true}
+    base-url: ${WORKPRO_OCR_BASE_URL:http://127.0.0.1:8090}
+    connect-timeout-ms: ${WORKPRO_OCR_CONNECT_TIMEOUT_MS:3000}
+    read-timeout-ms: ${WORKPRO_OCR_READ_TIMEOUT_MS:120000}
+    max-file-bytes: ${WORKPRO_OCR_MAX_FILE_BYTES:104857600}
+    minimum-page-pass-rate: ${WORKPRO_OCR_MINIMUM_PAGE_PASS_RATE:0.95}
+    task-storage-dir: ${WORKPRO_OCR_TASK_STORAGE_DIR:${java.io.tmpdir}/workpro-ocr-tasks}
     redis:
-      stream: ${AGICORE_OCR_REDIS_STREAM:ocr-ingest}
-      group: ${AGICORE_OCR_REDIS_GROUP:ocr-workers}
-      consumer: ${AGICORE_OCR_REDIS_CONSUMER:worker-1}
-      poll-delay-ms: ${AGICORE_OCR_REDIS_POLL_DELAY_MS:1000}
+      stream: ${WORKPRO_OCR_REDIS_STREAM:ocr-ingest}
+      group: ${WORKPRO_OCR_REDIS_GROUP:ocr-workers}
+      consumer: ${WORKPRO_OCR_REDIS_CONSUMER:worker-1}
+      poll-delay-ms: ${WORKPRO_OCR_REDIS_POLL_DELAY_MS:1000}
   model:
     llm:
-      provider: ${AGICORE_LLM_PROVIDER:OpenAI}
-      base-url: ${AGICORE_LLM_BASE_URL:https://ahg.codes}
-      api-key: ${AGICORE_LLM_API_KEY:}
-      model: ${AGICORE_LLM_MODEL:gpt-5.6-sol}
+      provider: ${WORKPRO_LLM_PROVIDER:OpenAI}
+      base-url: ${WORKPRO_LLM_BASE_URL:https://ahg.codes}
+      api-key: ${WORKPRO_LLM_API_KEY:}
+      model: ${WORKPRO_LLM_MODEL:gpt-5.6-sol}
       model_context_window : 1047576
       model_auto_compact_token_limit : 105197
       review_model : "gpt-5.5"
@@ -59,20 +59,20 @@ agicore:
     rag-generation:
       # Use the same OpenAI-compatible dialogue endpoint by default. The RAG
       # generator remains independently configurable through these variables.
-      provider: ${AGICORE_RAG_GENERATION_PROVIDER:${AGICORE_LLM_PROVIDER:OpenAI}}
-      base-url: ${AGICORE_RAG_GENERATION_BASE_URL:${AGICORE_LLM_BASE_URL:https://ahg.codes}}
-      api-key: ${AGICORE_RAG_CHAT_API_KEY:${AGICORE_LLM_API_KEY:}}
-      model: ${AGICORE_RAG_GENERATION_MODEL:${AGICORE_LLM_MODEL:gpt-5.6-sol}}
+      provider: ${WORKPRO_RAG_GENERATION_PROVIDER:${WORKPRO_LLM_PROVIDER:OpenAI}}
+      base-url: ${WORKPRO_RAG_GENERATION_BASE_URL:${WORKPRO_LLM_BASE_URL:https://ahg.codes}}
+      api-key: ${WORKPRO_RAG_CHAT_API_KEY:${WORKPRO_LLM_API_KEY:}}
+      model: ${WORKPRO_RAG_GENERATION_MODEL:${WORKPRO_LLM_MODEL:gpt-5.6-sol}}
       thinking: disabled
-      max-tokens: ${AGICORE_RAG_GENERATION_MAX_TOKENS:4096}
-      connect-timeout-ms: ${AGICORE_RAG_GENERATION_CONNECT_TIMEOUT_MS:10000}
-      read-timeout-ms: ${AGICORE_RAG_GENERATION_READ_TIMEOUT_MS:180000}
-      retries: ${AGICORE_RAG_GENERATION_RETRIES:2}
+      max-tokens: ${WORKPRO_RAG_GENERATION_MAX_TOKENS:4096}
+      connect-timeout-ms: ${WORKPRO_RAG_GENERATION_CONNECT_TIMEOUT_MS:10000}
+      read-timeout-ms: ${WORKPRO_RAG_GENERATION_READ_TIMEOUT_MS:180000}
+      retries: ${WORKPRO_RAG_GENERATION_RETRIES:2}
     embedding:
       # 阿里云百炼 OpenAI 兼容模式；API Key 通过环境变量注入
-      provider: ${AGICORE_EMBEDDING_PROVIDER:dashscope}
-      base-url: ${AGICORE_EMBEDDING_BASE_URL:https://dashscope.aliyuncs.com/api/v1}
-      api-key: ${AGICORE_EMBEDDING_API_KEY:}
-      model: ${AGICORE_EMBEDDING_MODEL:qwen3.7-text-embedding}
+      provider: ${WORKPRO_EMBEDDING_PROVIDER:dashscope}
+      base-url: ${WORKPRO_EMBEDDING_BASE_URL:https://dashscope.aliyuncs.com/api/v1}
+      api-key: ${WORKPRO_EMBEDDING_API_KEY:}
+      model: ${WORKPRO_EMBEDDING_MODEL:qwen3.7-text-embedding}
       # 以首次 API 返回维度为最终准则
-      dimension: ${AGICORE_EMBEDDING_DIMENSION:1024}
+      dimension: ${WORKPRO_EMBEDDING_DIMENSION:1024}

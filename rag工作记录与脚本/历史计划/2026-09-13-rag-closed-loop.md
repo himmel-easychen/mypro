@@ -48,9 +48,9 @@ acceptanceK = 5
 ### Task 2: 统一 RetrievalCandidate 契约
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalContracts.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Create: `backend/src/test/java/com/agicore/rag/RetrievalCandidateTest.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalContracts.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Create: `backend/src/test/java/com/workpro/rag/RetrievalCandidateTest.java`
 
 **Interface:** `RetrievalCandidate(chunkId, parentChunkId, documentId, sourceFile, content, location, providerScores, finalScore, status)`。
 
@@ -62,12 +62,12 @@ acceptanceK = 5
 ### Task 3: 实现 Vector、Keyword、Exact 三路 Provider
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/VectorRetrievalProvider.java`
-- Create: `backend/src/main/java/com/agicore/rag/KeywordRetrievalProvider.java`
-- Create: `backend/src/main/java/com/agicore/rag/ExactRetrievalProvider.java`
-- Modify: `backend/src/main/java/com/agicore/persistence/RagPersistence.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RagServices.java`
-- Create: `backend/src/test/java/com/agicore/rag/RetrievalProviderTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/VectorRetrievalProvider.java`
+- Create: `backend/src/main/java/com/workpro/rag/KeywordRetrievalProvider.java`
+- Create: `backend/src/main/java/com/workpro/rag/ExactRetrievalProvider.java`
+- Modify: `backend/src/main/java/com/workpro/persistence/RagPersistence.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RagServices.java`
+- Create: `backend/src/test/java/com/workpro/rag/RetrievalProviderTest.java`
 
 - [x] Vector Provider 调用真实 pgvector，固定 `limit=20`。
 - [x] Keyword Provider 使用 `to_tsvector/websearch_to_tsquery` 或已部署的 Elasticsearch BM25，固定 `limit=20`。
@@ -78,9 +78,9 @@ acceptanceK = 5
 ### Task 4: 实现等权 RRF 融合和 parent 扩展
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/RetrievalFusionService.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RagServices.java`
-- Create: `backend/src/test/java/com/agicore/rag/RetrievalFusionServiceTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/RetrievalFusionService.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RagServices.java`
+- Create: `backend/src/test/java/com/workpro/rag/RetrievalFusionServiceTest.java`
 
 **Interface:** `fuse(vectorHits, keywordHits, exactHits, providerWeights, rrfK=60, fusionTopK=8)`。
 
@@ -94,10 +94,10 @@ acceptanceK = 5
 ### Task 5: 接入 API、路由和追踪日志
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/api/RagController.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RagServices.java`
-- Create: `backend/src/main/java/com/agicore/rag/RetrievalTrace.java`
-- Modify: `backend/src/test/java/com/agicore/rag/RagSearchDelegationTest.java`
+- Modify: `backend/src/main/java/com/workpro/api/RagController.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RagServices.java`
+- Create: `backend/src/main/java/com/workpro/rag/RetrievalTrace.java`
+- Modify: `backend/src/test/java/com/workpro/rag/RagSearchDelegationTest.java`
 
 - [x] 保持旧的 `GET /api/rag/search?query=...` 兼容。
 - [x] 新增 `topK`、`documentId`、`mode=auto|vector|keyword|exact`。

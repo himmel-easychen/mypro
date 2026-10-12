@@ -38,9 +38,9 @@
 - Create: `D:/studyprogram/mypro/wd/rag-h-baseline-manifest-2026-09-15.md`
 - Modify if needed: `D:/studyprogram/mypro/docs/rag-优化实验复盘与关键结论-2026-09-15.md`
 - Read/check: `D:/studyprogram/mypro/scripts/run_rag_eval.py`
-- Read/check: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Read/check: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/rag/QueryChunkReranker.java`
-- Read/check: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/rag/RetrievalQueryProfile.java`
+- Read/check: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Read/check: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/rag/QueryChunkReranker.java`
+- Read/check: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/rag/RetrievalQueryProfile.java`
 
 **Interfaces:**
 - Consumes: existing `/api/rag/search` and eval runner.
@@ -59,9 +59,9 @@
 ### Task 2: 固定拒答契约 T6 前置
 
 **Files:**
-- Create: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/dialogue/AnswerPolicy.java`
-- Create test: `D:/studyprogram/mypro/backend/src/test/java/com/agicore/dialogue/AnswerPolicyTest.java`
-- Modify later consumer: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/dialogue/DialogueOrchestrator.java`
+- Create: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/dialogue/AnswerPolicy.java`
+- Create test: `D:/studyprogram/mypro/backend/src/test/java/com/workpro/dialogue/AnswerPolicyTest.java`
+- Modify later consumer: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/dialogue/DialogueOrchestrator.java`
 
 **Interfaces:**
 - Produces: `AnswerPolicy` with stable refusal text and evidence sufficiency rules.
@@ -79,9 +79,9 @@
 ### Task 3: 完成 Query 改写但保持回退
 
 **Files:**
-- Modify: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/rag/QueryTransformation.java`
-- Modify/test: `D:/studyprogram/mypro/backend/src/test/java/com/agicore/rag/QueryTransformationTest.java`
-- Inspect: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/rag/RetrievalQueryProfile.java`
+- Modify: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/rag/QueryTransformation.java`
+- Modify/test: `D:/studyprogram/mypro/backend/src/test/java/com/workpro/rag/QueryTransformationTest.java`
+- Inspect: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/rag/RetrievalQueryProfile.java`
 
 **Interfaces:**
 - Consumes: original user query and optional dialogue history.
@@ -100,10 +100,10 @@
 ### Task 4: 构造可审计的 Evidence Prompt
 
 **Files:**
-- Create: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/dialogue/RagPromptBuilder.java`
-- Create test: `D:/studyprogram/mypro/backend/src/test/java/com/agicore/dialogue/RagPromptBuilderTest.java`
-- Read/possibly modify: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/rag/EvidenceContextReranker.java`
-- Read/possibly modify: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/rag/RetrievalContracts.java`
+- Create: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/dialogue/RagPromptBuilder.java`
+- Create test: `D:/studyprogram/mypro/backend/src/test/java/com/workpro/dialogue/RagPromptBuilderTest.java`
+- Read/possibly modify: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/rag/EvidenceContextReranker.java`
+- Read/possibly modify: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/rag/RetrievalContracts.java`
 
 **Interfaces:**
 - Consumes: user query, optional history, selected retrieval candidates/evidence context.
@@ -122,11 +122,11 @@
 ### Task 5: 接通真实 LLM 回答服务
 
 **Files:**
-- Create: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/dialogue/AnswerService.java`
-- Create test: `D:/studyprogram/mypro/backend/src/test/java/com/agicore/dialogue/AnswerServiceTest.java`
-- Modify: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/dialogue/DialogueOrchestrator.java`
-- Reuse: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/model/ModelGateway.java`
-- Keep separate: `D:/studyprogram/mypro/backend/src/main/java/com/agicore/dialogue/WriterAgent.java`
+- Create: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/dialogue/AnswerService.java`
+- Create test: `D:/studyprogram/mypro/backend/src/test/java/com/workpro/dialogue/AnswerServiceTest.java`
+- Modify: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/dialogue/DialogueOrchestrator.java`
+- Reuse: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/model/ModelGateway.java`
+- Keep separate: `D:/studyprogram/mypro/backend/src/main/java/com/workpro/dialogue/WriterAgent.java`
 
 **Interfaces:**
 - Consumes: query, retrieval evidence pack, prompt builder, `ModelGateway`.

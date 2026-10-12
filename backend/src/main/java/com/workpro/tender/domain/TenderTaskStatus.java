@@ -1,0 +1,20 @@
+package com.workpro.tender.domain;
+
+public enum TenderTaskStatus {
+    CREATED,
+    ANALYZING,
+    ANALYSIS_READY,
+    AWAITING_CONFIRMATION,
+    COLLABORATING,
+    COLLABORATION_READY,
+    GENERATING,
+    REVIEWING,
+    REVISION_REQUIRED,
+    EXPORTING,
+    EXPORT_READY,
+    DELIVERED,
+    BLOCKED,
+    FAILED,
+    CANCELLED,
+    ARCHIVED
+}

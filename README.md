@@ -1,4 +1,4 @@
-#workpro
+# workpro
 
 Java/Spring Boot + React/Vite 的文档问答与投标工作流原型。后端支持文档解析与 OCR、PostgreSQL/pgvector 持久化、Elasticsearch BM25 与向量混合检索、交叉编码器重排、RAG 回答，以及投标分析与文档生成流程。
 

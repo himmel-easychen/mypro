@@ -27,9 +27,9 @@
 ### Task 1: 固化 RRF 基线与自适应候选窗口
 
 **Files:**
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalTrace.java`
-- Test: `backend/src/test/java/com/agicore/rag/RetrievalFusionServiceTest.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalTrace.java`
+- Test: `backend/src/test/java/com/workpro/rag/RetrievalFusionServiceTest.java`
 
 **Interfaces:**
 - Produce `static Map<String, Double> defaultProviderWeights()`，返回当前确认的 `VECTOR=1.0`、`ELASTICSEARCH_BM25=1.0`、`STRUCTURED=0.5`、`EXACT=1.0`。
@@ -68,9 +68,9 @@ Expected: PASS。
 ### Task 2: 增加查询意图门控，避免普通查询调用 Structured
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/RetrievalQueryIntent.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Test: `backend/src/test/java/com/agicore/rag/RetrievalQueryIntentTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/RetrievalQueryIntent.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Test: `backend/src/test/java/com/workpro/rag/RetrievalQueryIntentTest.java`
 
 **Interfaces:**
 - `RetrievalQueryIntent.classify(String query, Map<String,Object> filters)` 返回 `SEMANTIC`、`IDENTIFIER`、`TABLE_NUMERIC`、`TABLE_FIELD`、`COMPARE` 之一。
@@ -104,9 +104,9 @@ Expected: PASS。
 ### Task 3: 第一层 Query-Chunk rerank
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/QueryChunkReranker.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Test: `backend/src/test/java/com/agicore/rag/QueryChunkRerankerTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/QueryChunkReranker.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Test: `backend/src/test/java/com/workpro/rag/QueryChunkRerankerTest.java`
 
 **Interfaces:**
 - `List<RetrievalCandidate> rerank(String query, List<RetrievalCandidate> candidates, RetrievalQueryIntent intent, int topK)`。
@@ -133,9 +133,9 @@ Run: `mvn -q -Dtest=QueryChunkRerankerTest test`；随后运行 50 条评测。�
 ### Task 4: 第二层 evidence/context rerank
 
 **Files:**
-- Create: `backend/src/main/java/com/agicore/rag/EvidenceContextReranker.java`
-- Modify: `backend/src/main/java/com/agicore/rag/RetrievalServiceAdapter.java`
-- Test: `backend/src/test/java/com/agicore/rag/EvidenceContextRerankerTest.java`
+- Create: `backend/src/main/java/com/workpro/rag/EvidenceContextReranker.java`
+- Modify: `backend/src/main/java/com/workpro/rag/RetrievalServiceAdapter.java`
+- Test: `backend/src/test/java/com/workpro/rag/EvidenceContextRerankerTest.java`
 
 **Interfaces:**
 - `List<RetrievalCandidate> selectContext(String query, List<RetrievalCandidate> reranked, Map<String,Object> parentContext, int contextTopK)`。

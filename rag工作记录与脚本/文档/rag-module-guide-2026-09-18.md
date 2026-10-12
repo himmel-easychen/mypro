@@ -33,11 +33,11 @@ flowchart TD
 
 核心代码：
 
-- `backend/src/main/java/com/agicore/api/RagAnswerController.java`
-- `backend/src/main/java/com/agicore/dialogue/AnswerService.java`
-- `backend/src/main/java/com/agicore/dialogue/RagPromptBuilder.java`
-- `backend/src/main/java/com/agicore/rag/RetrievalQueryProfile.java`
-- `backend/src/main/java/com/agicore/dialogue/RagQualityService.java`
+- `backend/src/main/java/com/workpro/api/RagAnswerController.java`
+- `backend/src/main/java/com/workpro/dialogue/AnswerService.java`
+- `backend/src/main/java/com/workpro/dialogue/RagPromptBuilder.java`
+- `backend/src/main/java/com/workpro/rag/RetrievalQueryProfile.java`
+- `backend/src/main/java/com/workpro/dialogue/RagQualityService.java`
 
 ## 3. 检索与证据策略
 
@@ -112,8 +112,8 @@ RAG 生成使用强制结构化输出，要求模型提交：
 
 相关代码：
 
-- `backend/src/main/java/com/agicore/dialogue/AnswerUnitValidator.java`
-- `backend/src/test/java/com/agicore/dialogue/AnswerUnitValidatorTest.java`
+- `backend/src/main/java/com/workpro/dialogue/AnswerUnitValidator.java`
+- `backend/src/test/java/com/workpro/dialogue/AnswerUnitValidatorTest.java`
 
 ## 6. 生产质量闭环接口
 

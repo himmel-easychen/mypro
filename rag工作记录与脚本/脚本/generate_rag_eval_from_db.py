@@ -26,7 +26,7 @@ def load_jsonl(path):
     return rows
 
 def codex_key():
-    key = os.getenv("RAG_LLM_API_KEY") or os.getenv("AGICORE_LLM_API_KEY")
+    key = os.getenv("RAG_LLM_API_KEY") or os.getenv("WORKPRO_LLM_API_KEY")
     if key:
         return key
     auth = Path(os.getenv("USERPROFILE", "")) / ".codex" / "auth.json"

@@ -43,21 +43,21 @@ def main():
         if sock.connect_ex(('127.0.0.1', 8081)) == 0:
             raise RuntimeError('Port 8081 is busy')
     env = dict(os.environ)
-    env.update(SERVER_PORT='8081', AGICORE_EMBEDDING_PROVIDER='dashscope',
-        AGICORE_EMBEDDING_BASE_URL='https://dashscope.aliyuncs.com/api/v1',
-        AGICORE_EMBEDDING_API_KEY=embedding_key, AGICORE_EMBEDDING_MODEL='text-embedding-v4',
-        AGICORE_EMBEDDING_DIMENSION='1024', AGICORE_RERANK_ENABLED='true',
-        AGICORE_RERANK_BASE_URL='http://127.0.0.1:8000', AGICORE_RERANK_MODEL='BAAI/bge-reranker-base',
-        AGICORE_RAG_GENERATION_PROVIDER='DeepSeek', AGICORE_RAG_GENERATION_MODEL=model,
-        AGICORE_RAG_GENERATION_BASE_URL='https://api.deepseek.com', AGICORE_RAG_CHAT_API_KEY=judge_key,
-        AGICORE_OCR_ENABLED='false', RAGAS_JUDGE_API_KEY=judge_key, RAGAS_EMBEDDING_API_KEY=embedding_key,
+    env.update(SERVER_PORT='8081', WORKPRO_EMBEDDING_PROVIDER='dashscope',
+        WORKPRO_EMBEDDING_BASE_URL='https://dashscope.aliyuncs.com/api/v1',
+        WORKPRO_EMBEDDING_API_KEY=embedding_key, WORKPRO_EMBEDDING_MODEL='text-embedding-v4',
+        WORKPRO_EMBEDDING_DIMENSION='1024', WORKPRO_RERANK_ENABLED='true',
+        WORKPRO_RERANK_BASE_URL='http://127.0.0.1:8000', WORKPRO_RERANK_MODEL='BAAI/bge-reranker-base',
+        WORKPRO_RAG_GENERATION_PROVIDER='DeepSeek', WORKPRO_RAG_GENERATION_MODEL=model,
+        WORKPRO_RAG_GENERATION_BASE_URL='https://api.deepseek.com', WORKPRO_RAG_CHAT_API_KEY=judge_key,
+        WORKPRO_OCR_ENABLED='false', RAGAS_JUDGE_API_KEY=judge_key, RAGAS_EMBEDDING_API_KEY=embedding_key,
         PYTHONIOENCODING='utf-8', PYTHONUNBUFFERED='1')
     output = ROOT / 'rag工作记录与脚本/评测产物与工作目录/wd/ragas-v4-full50-2026-09-27.json'
     if output.exists() or output.with_suffix('.responses.jsonl').exists():
         raise RuntimeError('Fresh output already exists; inspect before resuming')
     with (ROOT / 'tmp/ragas-v4-backend.log').open('w', encoding='utf8') as log:
         java = r'C:\Program Files\Java\jdk-24\bin\java.exe' if os.name == 'nt' else 'java'
-        proc = subprocess.Popen([java, '-jar', 'backend/target/agicore-backend-0.1.0.jar'],
+        proc = subprocess.Popen([java, '-jar', 'backend/target/workpro-backend-0.1.0.jar'],
             cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT,
             creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
         try:

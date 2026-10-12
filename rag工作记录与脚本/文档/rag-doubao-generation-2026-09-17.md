@@ -4,7 +4,7 @@
 
 RAG 的 AnswerService 使用独立的 RagGenerationGateway，调用火山方舟 Responses 接口。原 ModelGateway / WriterAgent 继续使用既有对话模型配置；Qwen Embedding 配置保持不变。两条生成入口拥有独立的限流与熔断状态。
 
-配置位于 backend/src/main/resources/application.yml 的 agicore.model.rag-generation：
+配置位于 backend/src/main/resources/application.yml 的 workpro.model.rag-generation：
 
 - provider：ark-responses
 - base-url：https://ark.cn-beijing.volces.com/api/v3
@@ -12,7 +12,7 @@ RAG 的 AnswerService 使用独立的 RagGenerationGateway，调用火山方舟 
 - thinking：disabled
 - max-tokens：4096（请求字段 max_output_tokens）
 - 连接超时10秒，读取超时90秒，不自动重试。
-- 密钥：AGICORE_RAG_GENERATION_API_KEY 环境变量。本机已配置为 Windows 用户环境变量，并显式注入本轮后端进程；后续已有终端/IDE需要重新加载环境变量或重启。代码和报告不保存密钥。
+- 密钥：WORKPRO_RAG_GENERATION_API_KEY 环境变量。本机已配置为 Windows 用户环境变量，并显式注入本轮后端进程；后续已有终端/IDE需要重新加载环境变量或重启。代码和报告不保存密钥。
 
 输入只发送 RAG 文本提示词，使用 input / input_text，不携带示例图片。解析只读取 output 中 assistant message 的 output_text，跳过 reasoning 项；不完整、空正文响应返回失败，不冒充有效回答。
 

@@ -6,8 +6,8 @@ from PIL import Image
 import numpy as np
 
 logging.basicConfig(level=logging.INFO)
-log = logging.getLogger("agicore-ocr")
-app = FastAPI(title="AGI Core Local OCR")
+log = logging.getLogger("workpro-ocr")
+app = FastAPI(title="WorkPro Local OCR")
 MAX_BYTES = 100 * 1024 * 1024
 _ocr = _structure = None
 
