@@ -1,0 +1,27 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependencies and generated output
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+.idea/
+frontend/node_modules/
+frontend/dist/
+backend/target/
+ocr-service/input/
+ocr-service/output/
+ocr-service/tmp.xlsx
+*.log
+
+# Evaluation inputs, responses, and local work products
+rag工作记录与脚本/评测产物与工作目录/
+rag工作记录与脚本/运行日志/
+tmp/
+rag工作记录与脚本/脚本/临时复核脚本/

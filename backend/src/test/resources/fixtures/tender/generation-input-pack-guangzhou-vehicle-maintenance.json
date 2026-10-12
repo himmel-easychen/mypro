@@ -1,0 +1,174 @@
+{
+  "artifact": "GenerationInputPack",
+  "contract_version": "1.0",
+  "test_fixture": true,
+  "decision_mode": "simulated_human_confirmation",
+  "task": {
+    "project_name": "广州供电局2026-2027年综合类车辆维保项目",
+    "procurement_number": "CG2700022002213308",
+    "tenderer": "广东电网有限责任公司广州供电局",
+    "selected_lot": "标的1：越秀、荔湾区域一般车辆维保",
+    "selected_package": "越秀、荔湾区域一般车辆维保1",
+    "service_period": "自合同签订之日起2年内",
+    "bid_validity_days": 120,
+    "subcontracting_allowed": false
+  },
+  "source_document": {
+    "document_id": "tender-guangzhou-vehicle-maintenance-2026-2027",
+    "file_name": "1_广州供电局2026-2027年综合类车辆维保项目招标文件.pdf",
+    "page_count": 141
+  },
+  "analysis_artifacts": {
+    "tender_brief_id": "fixture:tender-brief:guangzhou-vehicle-maintenance",
+    "requirement_matrix_id": "fixture:requirement-matrix:guangzhou-vehicle-maintenance",
+    "scoring_matrix_id": "fixture:scoring-matrix:guangzhou-vehicle-maintenance",
+    "pricing_rule_pack_id": "fixture:pricing-rule-pack:guangzhou-vehicle-maintenance",
+    "fatal_risk_rule_pack_id": "fixture:fatal-risk-rule-pack:guangzhou-vehicle-maintenance",
+    "submission_structure_pack_id": "fixture:submission-structure-pack:guangzhou-vehicle-maintenance",
+    "response_plan_preview_id": "fixture:response-plan-preview:guangzhou-vehicle-maintenance"
+  },
+  "template_artifact_id": "fixture:tender-template-pack:guangzhou-vehicle-maintenance",
+  "confirmed_content_artifact_id": "fixture:confirmed-content-pack:guangzhou-vehicle-maintenance",
+  "readiness_artifact_type": "GENERATION_READINESS_REPORT",
+  "template_pack": {
+    "artifact": "TenderTemplatePack",
+    "status": "confirmed_for_test",
+    "template_source": "embedded_pdf_pages",
+    "output_format": "docx",
+    "document_parts": [
+      {
+        "part_id": "PRICE",
+        "title": "报价投标文件",
+        "source_pages": [68, 69, 70, 71, 98, 99, 100, 101],
+        "sections": [
+          {"section_id": "PRICE-COVER", "title": "报价投标文件封面", "mode": "fixed_form", "required": true},
+          {"section_id": "BID-LETTER", "title": "投标函", "mode": "fixed_form", "required": true},
+          {"section_id": "OPENING-SCHEDULE", "title": "开标一览表", "mode": "fixed_form", "required": true},
+          {"section_id": "PRICE-SCHEDULE", "title": "报价表", "mode": "fixed_table", "required": true},
+          {"section_id": "COST-ANALYSIS", "title": "成本分析报告", "mode": "conditional", "required": false}
+        ]
+      },
+      {
+        "part_id": "BUSINESS",
+        "title": "商务投标文件",
+        "source_pages": [102, 103, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128],
+        "sections": [
+          {"section_id": "BUSINESS-COVER", "title": "商务投标文件封面", "mode": "fixed_form", "required": true},
+          {"section_id": "LEGAL-REP", "title": "法定代表人身份证明或授权委托书", "mode": "exclusive_choice", "required": true},
+          {"section_id": "BUSINESS-DEVIATION", "title": "投标偏差表（商务部分）", "mode": "fixed_table", "required": true},
+          {"section_id": "BIDDER-PROFILE", "title": "投标人基本情况表", "mode": "fixed_table", "required": true},
+          {"section_id": "AFFILIATES", "title": "投标人关联企业情况声明", "mode": "fixed_form", "required": true},
+          {"section_id": "COMMITMENTS", "title": "投标人承诺书", "mode": "fixed_form", "required": true},
+          {"section_id": "CREDIT-QUERY", "title": "失信情况查询结果", "mode": "evidence_attachment", "required": true},
+          {"section_id": "PERFORMANCE-RISK", "title": "履约风险承诺书", "mode": "fixed_table", "required": true},
+          {"section_id": "AGENCY-FEE", "title": "交纳招标代理服务费承诺书", "mode": "fixed_form", "required": true},
+          {"section_id": "SIMILAR-PROJECTS", "title": "同类项目业绩", "mode": "evidence_table", "required": true},
+          {"section_id": "REPUTATION", "title": "企业信誉", "mode": "evidence_composition", "required": true},
+          {"section_id": "CERTIFICATIONS", "title": "管理体系认证", "mode": "evidence_composition", "required": true},
+          {"section_id": "QUALIFICATION", "title": "资质等级", "mode": "evidence_composition", "required": true}
+        ]
+      },
+      {
+        "part_id": "TECHNICAL",
+        "title": "技术投标文件",
+        "source_pages": [129, 130, 132, 133, 134, 135, 136, 137, 138, 139],
+        "sections": [
+          {"section_id": "TECH-COVER", "title": "技术投标文件封面", "mode": "fixed_form", "required": true},
+          {"section_id": "TECH-DEVIATION", "title": "投标偏差表（技术部分）", "mode": "fixed_table", "required": true},
+          {"section_id": "PROJECT-OVERVIEW", "title": "项目概况", "mode": "llm_generate", "required": true},
+          {"section_id": "SERVICE-PLAN", "title": "服务方案", "mode": "llm_generate", "required": true},
+          {"section_id": "SERVICE-TEAM", "title": "服务团队及服务能力", "mode": "evidence_grounded_generate", "required": true},
+          {"section_id": "QUALITY", "title": "服务质量保证措施", "mode": "evidence_grounded_generate", "required": true},
+          {"section_id": "SERVICE-COMMITMENT", "title": "服务承诺", "mode": "confirmed_commitment_generate", "required": true},
+          {"section_id": "OTHER-TECH", "title": "其他", "mode": "evidence_grounded_generate", "required": true}
+        ]
+      }
+    ],
+    "format_rules": [
+      {"rule_id": "FMT-001", "rule": "按报价、商务、技术三类文件分别编制", "source_page": 69},
+      {"rule_id": "FMT-002", "rule": "固定表格和承诺函不得改变实质内容", "source_pages": [69, 98, 105, 106, 108, 111, 114, 120, 121, 132]},
+      {"rule_id": "FMT-003", "rule": "封面、投标函及指定位置须盖电子印章或公章", "source_pages": [13, 69, 70]},
+      {"rule_id": "FMT-004", "rule": "优先采用可编辑Word文本，证书证件使用原件扫描件", "source_page": 13},
+      {"rule_id": "FMT-005", "rule": "商务及技术偏差应全部列入对应偏差表；完全响应时填写无偏差", "source_pages": [108, 132]}
+    ]
+  },
+  "confirmed_content_pack": {
+    "artifact": "ConfirmedContentPack",
+    "status": "confirmed_for_test",
+    "human_decisions": [
+      {"decision_id": "DEC-SCOPE-001", "type": "scope", "value": "越秀、荔湾区域一般车辆维保1", "simulated": true},
+      {"decision_id": "DEC-DEVIATION-001", "type": "deviation", "value": "商务与技术均无偏差", "simulated": true},
+      {"decision_id": "DEC-PRICE-001", "type": "pricing", "value": {"labor_discount_rate_a_percent": 10.0, "material_discount_rate_b_percent": 5.0, "composite_discount_rate_c_percent": 8.5}, "simulated": true},
+      {"decision_id": "DEC-COMMIT-001", "type": "service_commitment", "value": ["接到通知30分钟内上门取车送车", "每月上门定期检查", "迅速响应突发事件"], "simulated": true},
+      {"decision_id": "DEC-GEN-001", "type": "generation_approval", "value": true, "simulated": true}
+    ],
+    "content_by_section": [
+      {"section_id": "PROJECT-OVERVIEW", "instructions": ["覆盖一般车辆维保服务范围、广州区域特点和两年框架服务周期", "不得虚构投标人现有资源"]},
+      {"section_id": "SERVICE-PLAN", "instructions": ["包含接车、诊断、报价确认、维修、质检、交付、回访闭环", "分析重点难点和应急维修流程"]},
+      {"section_id": "SERVICE-TEAM", "instructions": ["仅使用已核验人员、社保和设备证据", "未提供证据的人员或设备不写入最终投标文件"]},
+      {"section_id": "QUALITY", "instructions": ["描述质量目标、质量体系、检验和追溯措施", "服务网点距离必须由百度地图测距证据支持"]},
+      {"section_id": "SERVICE-COMMITMENT", "instructions": ["写入30分钟取送车和每月定检承诺", "其他承诺不得超出已确认边界"]},
+      {"section_id": "OTHER-TECH", "instructions": ["场地面积仅按有效租赁合同或产权材料填写", "附维修工种场地划分图"]}
+    ],
+    "evidence_policy": {
+      "allow_fabricated_facts": false,
+      "allow_unconfirmed_enterprise_data": false,
+      "citation_required": true
+    }
+  },
+  "pricing": {
+    "labor_discount_rate_a_percent": 10.0,
+    "material_discount_rate_b_percent": 5.0,
+    "composite_discount_formula": "c=1-{(1-a)*70%+(1-b)*30%}",
+    "composite_discount_rate_c_percent": 8.5,
+    "validity_check": "passed",
+    "cost_analysis_required": false,
+    "source_pages": [8, 12, 98, 99]
+  },
+  "scoring_targets": [
+    {"section_id": "SIMILAR-PROJECTS", "criterion": "2021-01-01至投标截止日每项车辆维保业绩5分，最高30分", "target": "以真实合同或中标通知书尽量覆盖6项", "source_page": 37},
+    {"section_id": "REPUTATION", "criterion": "近五年A级纳税人每年4分，最高20分", "target": "按真实查询结果填报", "source_page": 37},
+    {"section_id": "CERTIFICATIONS", "criterion": "质量、环境、职业健康安全三体系齐全且有效得30分", "target": "按有效证书填报", "source_page": 38},
+    {"section_id": "QUALIFICATION", "criterion": "车辆维修企业一类20分、二类15分、二类以下10分", "target": "按行政确认的证书或备案证明填报", "source_page": 38},
+    {"section_id": "PROJECT-OVERVIEW", "criterion": "项目概况最高15分", "target": "按A级区间组织内容", "source_page": 39},
+    {"section_id": "SERVICE-PLAN", "criterion": "服务方案最高20分", "target": "按A级区间组织内容", "source_page": 39},
+    {"section_id": "SERVICE-TEAM", "criterion": "服务团队及能力最高20分", "target": "证据满足时按A级区间组织内容", "source_pages": [40, 41]},
+    {"section_id": "QUALITY", "criterion": "质量保证措施最高20分，距离不超过5公里为A级条件之一", "target": "必须先取得地图测距证据", "source_page": 41},
+    {"section_id": "SERVICE-COMMITMENT", "criterion": "服务承诺最高15分", "target": "纳入30分钟取送车和每月定检", "source_pages": [41, 42]},
+    {"section_id": "OTHER-TECH", "criterion": "维修场地面积最高10分", "target": "按真实面积和证明材料填报", "source_page": 42}
+  ],
+  "blocking_placeholders": [
+    {"field": "bidder.full_name", "reason": "缺少企业主体资料", "required_before_docx": true},
+    {"field": "bidder.legal_representative", "reason": "缺少法定代表人信息及身份证明", "required_before_docx": true},
+    {"field": "bidder.authorized_agent", "reason": "尚未决定是否委托代理人", "required_before_docx": true},
+    {"field": "bidder.contact_details", "reason": "缺少地址、电话、传真和邮编", "required_before_docx": true},
+    {"field": "bidder.business_license", "reason": "缺少营业执照扫描件", "required_before_docx": true},
+    {"field": "evidence.similar_projects", "reason": "缺少真实车辆维保业绩证据", "required_before_docx": true},
+    {"field": "evidence.tax_credit", "reason": "缺少近五年纳税信用资料", "required_before_docx": true},
+    {"field": "evidence.management_certificates", "reason": "缺少三体系证书及有效期", "required_before_docx": true},
+    {"field": "evidence.vehicle_repair_qualification", "reason": "缺少车辆维修企业资格证明", "required_before_docx": true},
+    {"field": "evidence.team_social_security", "reason": "缺少投标截止日前4个月内连续3个月社保证明", "required_before_docx": true},
+    {"field": "evidence.service_site_distance", "reason": "缺少百度地图行驶距离证据", "required_before_docx": true},
+    {"field": "evidence.site_area", "reason": "缺少场地面积证明和工种场地划分图", "required_before_docx": true},
+    {"field": "submission.bid_deadline", "reason": "当前抽取结果未固化投标截止时间", "required_before_docx": true},
+    {"field": "submission.bid_security", "reason": "需按所投标包确认投标保证金金额及凭证", "required_before_docx": true},
+    {"field": "submission.lot_priority_order", "reason": "如投多个标的必须确认一致的标的优先顺序", "required_before_docx": false}
+  ],
+  "generation_policy": {
+    "output_format": "docx",
+    "allow_unconfirmed_artifacts": false,
+    "allow_placeholder_in_final_docx": false,
+    "require_source_trace": true,
+    "preserve_fixed_forms": true,
+    "preserve_section_order": true,
+    "attach_original_evidence_scans": true,
+    "block_on_missing_required_evidence": true
+  },
+  "readiness": {
+    "status": "needs_more_materials",
+    "template_contract_ready": true,
+    "simulated_business_decisions_ready": true,
+    "enterprise_evidence_ready": false,
+    "ready_for_final_docx": false
+  }
+}

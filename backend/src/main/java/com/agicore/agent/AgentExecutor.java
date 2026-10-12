@@ -1,0 +1,5 @@
+package com.agicore.agent;
+import org.springframework.stereotype.Service; import java.util.concurrent.*; import static com.agicore.agent.AgentContracts.*;
+@Service public class AgentExecutor { private final AgentRegistry registry; public AgentExecutor(AgentRegistry r){registry=r;}
+ public AgentResult execute(String id,AgentInput input,AgentContext ctx){var a=registry.get(id);var d=a.definition();for(int attempt=0;attempt<=d.maxRetries();attempt++){try{var pool=Executors.newSingleThreadExecutor();try{return pool.submit(()->a.execute(input,ctx)).get(d.timeout().toMillis(),TimeUnit.MILLISECONDS);}finally{pool.shutdownNow();}}catch(TimeoutException e){if(attempt==d.maxRetries())return new Failure(new AgentError("AGENT_TIMEOUT",e.getMessage(),false));}catch(Exception e){if(attempt==d.maxRetries())return new Failure(new AgentError("AGENT_EXECUTION",e.getCause()==null?e.getMessage():e.getCause().getMessage(),false));}}return new Failure(new AgentError("AGENT_EXECUTION","unreachable",false));}
+}

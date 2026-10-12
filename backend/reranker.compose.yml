@@ -1,0 +1,15 @@
+services:
+  reranker:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+    container_name: agicore-reranker
+    command: ["--model-id", "BAAI/bge-reranker-base"]
+    ports:
+      - "8000:80"
+    volumes:
+      - reranker-cache:/data
+    restart: unless-stopped
+
+volumes:
+  reranker-cache:
+    external: true
+    name: agicore-reranker-cache
